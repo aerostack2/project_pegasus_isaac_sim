@@ -8,6 +8,8 @@ https://github.com/user-attachments/assets/a465b64a-a23c-4e7f-9d47-6908acafc153
 
 This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble). It is recommended to have an Nvidia GPU with CUDA enabled capabilities.
 
+Note: Check Troubleshooting section if you have installation problems and remember to deactivate conda for all the building steps performed in the following sections (how to deactivate is also in Troubleshooting section)
+
 ### Install Pegasus Simulator and Isaac Sim 4.2.0
 
 Follow this instrusctions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
@@ -180,3 +182,7 @@ ros2 launch my_package my_launch.py -s
 ```
 
 Also, you can see them in the default config file of the package, in the *config* folder. If you want to modify the default parameters, you can add the parameter to the config file.
+
+## Troubleshooting
+### Conda installation and compilation issues
+Remove from `.bashrc` the conda init for the base environment. Source again `.bashrc` and run `sudo ldconfig`.
