@@ -55,7 +55,41 @@ cd <qgroundcontrol_path>
 ```
 In QGroundControl you can now press "Take Off" and after, set navgation points for the drone to move. If this is working, you have everything until this point properly installed and working.
 
+### Install Micro XRCE-DDS Agent & Client
+Here it is being build from source but it can be installed in other ways (check: https://docs.px4.io/main/en/ros2/user_guide.html).
+
+Note: Remember to have conda deactivated properly and if build error, fix CMakeList.txt as in https://github.com/PX4/PX4-Autopilot/issues/24477#issuecomment-2710838732
+```
+cd ~/workspace
+git clone -b v2.4.2 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+cd Micro-XRCE-DDS-Agent
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig /usr/local/lib/
+```
+
 ### Install Aerostack 2
+Instal Aerostack 2 base:
+```
+sudo apt install ros-humble-aerostack2
+```
+
+Clone and build `ros-humble-as2-platform-pixhawk` (if you have conda, remove libtiff `conda uninstall libtiff` and deactivate environment previous to build):
+```
+mkdir -p ~/workspace/as2_platform_pixhawk_ws/src
+cd ~/workspace/as2_platform_pixhawk_ws/src
+git clone https://github.com/aerostack2/as2_platform_pixhawk
+git clone https://github.com/PX4/px4_msgs
+cd px4_msgs
+git checkout remotes/origin/release/1.14
+cd ../..
+rosdep init
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
 
 
 ## Execution
