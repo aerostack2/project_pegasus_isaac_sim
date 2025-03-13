@@ -30,6 +30,8 @@ Install PX4 (release 1.14.3) as explained in the Pegasus Docs (https://pegasussi
 
 Install full version of ROS 2 (Humble) as in https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 
+Note: remember to upgrade the libraries explained in the ROS 2 docs if you don't want ROS 2 to mess with your ubuntu basic libraries.
+
 ### [Optional] Installation check
 To check the installation is successful until this point:
 ```
