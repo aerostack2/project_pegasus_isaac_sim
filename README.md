@@ -55,7 +55,7 @@ cd <qgroundcontrol_path>
 ```
 In QGroundControl you can now press "Take Off" and after, set navgation points for the drone to move. If this is working, you have everything until this point properly installed and working.
 
-### Install Micro XRCE-DDS Agent & Client
+### Build Micro XRCE-DDS Agent & Client
 Here it is being build from source but it can be installed in other ways (check: https://docs.px4.io/main/en/ros2/user_guide.html).
 
 Note1: Remember to have conda deactivated properly.
