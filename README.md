@@ -58,7 +58,8 @@ In QGroundControl you can now press "Take Off" and after, set navgation points f
 ### Install Micro XRCE-DDS Agent & Client
 Here it is being build from source but it can be installed in other ways (check: https://docs.px4.io/main/en/ros2/user_guide.html).
 
-Note: Remember to have conda deactivated properly and if build error, fix CMakeList.txt as in https://github.com/PX4/PX4-Autopilot/issues/24477#issuecomment-2710838732
+Note1: Remember to have conda deactivated properly.
+Note2: If build error, fix CMakeList.txt as in https://github.com/PX4/PX4-Autopilot/issues/24477#issuecomment-2710838732
 ```
 cd ~/workspace
 git clone -b v2.4.2 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
