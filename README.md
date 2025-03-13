@@ -19,7 +19,7 @@ git clone https://github.com/aerostack2/project_pegasus_isaac_sim
 
 ### Install Pegasus Simulator and Isaac Sim 4.2.0
 
-Follow this instrusctions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
+Follow this instructions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
 
 You should be able now to run:
 ```
