@@ -1,21 +1,38 @@
-# Project Pegasus in Isaac Sim
+# Project Pegasus Simulator in Isaac Sim [WIP]
 
-This project aims at installing and running a photorealistic simulation of a drone using [Pegasus Simulator](https://github.com/PegasusSimulator/PegasusSimulator) and [Nvidia Isaac Sim](https://developer.nvidia.com/isaac/sim). Here a short video of the resulting simulation:
+This project aims at installing and running a photorealistic simulation of a drone using [Pegasus Simulator](https://github.com/PegasusSimulator/PegasusSimulator), [Nvidia Isaac Sim](https://developer.nvidia.com/isaac/sim) and [Aerostack 2](https://github.com/aerostack2/aerostack2). Here a short video of the resulting simulation:
 
 https://github.com/user-attachments/assets/a465b64a-a23c-4e7f-9d47-6908acafc153
 
 ## Installation
 
-You need to clone and build [as2_platform_pixhawk](https://github.com/aerostack2/as2_platform_pixhawk),
-refer to https://aerostack2.github.io/_03_aerial_platforms/_pixhawk/index.html for more information.
+This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble). It is recommended to have an Nvidia GPU with CUDA enabled capabilities.
 
-To install this project, clone the repository:
+### Install Pegasus Simulator and Isaac Sim 4.2.0
 
-```bash
-git clone https://github.com/aerostack2/project_px4_vision
+Follow this instrusctions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
+
+You should be able now to run:
 ```
+# Run the bundled python interpreter and see if it prints on the terminal "Hello World."
+ISAACSIM_PYTHON -c "print('Hello World.')"
 
-To start using this project, please go to the root folder of the project.
+# Run the python interpreter and check if we can run a script that starts the simulator and adds cubes to the world
+ISAACSIM_PYTHON ${ISAACSIM_PATH}/standalone_examples/api/omni.isaac.core/add_cubes.py
+```
+Install Pegasus Simulator (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html#installing-the-pegasus-simulator)
+
+Install PX4 (release 1.14.3) as explained in the Pegasus Docs (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html#installing-px4-autopilot)
+
+### Install ROS 2 (Humble)
+
+Install full version of ROS 2 (Humble) as in https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+
+### [Optional] Installation check
+To check the installation is successful until this point:
+```
+cd <root_folder_pegasus_simulator>/
+```
 
 ## Execution
 
