@@ -1,6 +1,8 @@
-# Project Pixhawk
+# Project Pegasus in Isaac Sim
 
-Please refer to https://aerostack2.github.io/_02_examples/pixhawk/project_px4_vision/index.html for more information.
+This project aims at installing and running a photorealistic simulation of a drone using [Pegasus Simulator](https://github.com/PegasusSimulator/PegasusSimulator) and [Nvidia Isaac Sim](https://developer.nvidia.com/isaac/sim). Here a short video of the resulting simulation:
+
+https://github.com/user-attachments/assets/a465b64a-a23c-4e7f-9d47-6908acafc153
 
 ## Installation
 
