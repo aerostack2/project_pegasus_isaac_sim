@@ -10,6 +10,13 @@ This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble)
 
 Note: Check Troubleshooting section if you have installation problems and remember to deactivate conda for all the building steps performed in the following sections (how to deactivate is also in Troubleshooting section)
 
+### Clone this repository
+```
+mkdir ~/workspace
+cd ~/workspace
+git clone https://github.com/aerostack2/project_pegasus_isaac_sim
+```
+
 ### Install Pegasus Simulator and Isaac Sim 4.2.0
 
 Follow this instrusctions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
@@ -33,10 +40,23 @@ Install full version of ROS 2 (Humble) as in https://docs.ros.org/en/humble/Inst
 Note: remember to upgrade the libraries explained in the ROS 2 docs if you don't want ROS 2 to mess with your ubuntu basic libraries.
 
 ### [Optional] Installation check
+Download QGroundControl (https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html#ubuntu)
+
 To check the installation is successful until this point:
 ```
-cd <root_folder_pegasus_simulator>/
+source /opt/ros/humble/setup.bash
+cd ~/workspace/project_pegasus_isaac_sim
+ISAACSIM_PYTHON drone_camera_lidar_isaac_sim.py
 ```
+Now the simulation with Pegasus Simulator and Isaac Sim will be running. Run now QGroundControl:
+```
+cd <qgroundcontrol_path>
+./QGroundControl.AppImage
+```
+In QGroundControl you can now press "Take Off" and after, set navgation points for the drone to move. If this is working, you have everything until this point properly installed and working.
+
+### Install Aerostack 2
+
 
 ## Execution
 
