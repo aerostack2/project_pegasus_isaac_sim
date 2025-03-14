@@ -25,9 +25,9 @@ windows:
         # - MicroXRCEAgent udp4 -p 8888
         - MicroXRCEAgent serial -b 921600 --dev /dev/ttyUSB0
       <% end %>
-        - ros2 launch as2_platform_pixhawk pixhawk_launch.py
-            namespace:=<%= drone_namespace %>
-            platform_config_file:=config/config.yaml
+        - AEROSTACK2_SIMULATION_DRONE_ID=<%= drone_namespace %> ros2 launch as2_platform_pixhawk pixhawk_launch.py
+            
+
 
   # Basic Robotics Functions
   - basics_robotics_functions:
@@ -73,6 +73,13 @@ windows:
         - ros2 run as2_alphanumeric_viewer as2_alphanumeric_viewer_node
             --ros-args -r  __ns:=/<%= drone_namespace %>
         - echo Run here the mission
+
+  # Teleoperation
+  - teleoperation:
+      layout: tiled
+      panes:
+        - ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py 
+            namespace:=<%= drone_namespace %> use_sim_time:=true
 
   <%- if rosbag %>
   # Rosbag
