@@ -104,7 +104,7 @@ There are a few possible environments (https://pegasussimulator.github.io/Pegasu
 
 ## Execution
 
-### Launch Simulation wiith Teleoperation
+### Launch Simulation with Teleoperation
 
 Open a terminal and launch Isaac Sim simulation:
 ```
