@@ -94,15 +94,22 @@ colcon build
 ```
 
 ## Config [WIP]
+Currently, the environment can be change in `drone_camera_lidar_isaac_sim.py`, in the line:
+```
+# Launch one of the worlds provided by NVIDIA
+self.pg.load_environment(SIMULATION_ENVIRONMENTS["Warehouse with Shelves"])
+```
 
+There are a few possible environments (https://pegasussimulator.github.io/PegasusSimulator/source/features/environments.html). We are working currently in enabling custom environments.
 
 ## Execution
 
-## Launch Simulation wiith Teleoperation
+### Launch Simulation wiith Teleoperation
 
 Open a terminal and launch Isaac Sim simulation:
 ```
 source /opt/ros/humble/setup.bash
+cd ~/workspace/project_pegasus_isaac_sim
 ISAACSIM_PYTHON drone_camera_lidar_isaac_sim.py --px4_dir <root_to_px4>/PX4-Autopilot
 ```
 
