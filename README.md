@@ -6,7 +6,7 @@ https://github.com/user-attachments/assets/a465b64a-a23c-4e7f-9d47-6908acafc153
 
 ## Installation
 
-This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble). It is recommended to have an Nvidia GPU with CUDA enabled capabilities.
+This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble). It is recommended to have an Nvidia GPU with CUDA enabled capabilities and enough VRAM (tested on Nvidia RTX4090).
 
 Note: Check Troubleshooting section if you have installation problems and remember to deactivate conda for all the building steps performed in the following sections (how to deactivate is also in Troubleshooting section)
 
