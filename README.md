@@ -115,13 +115,17 @@ ISAACSIM_PYTHON drone_camera_lidar_isaac_sim.py --px4_dir <root_to_px4>/PX4-Auto
 
 Open another terminal and launch Micro XRCE-DDS Client:
 ```
+source /opt/ros/humble/setup.bash
 cd ~/workspace/Micro-XRCE-DDS-Agent/build
 ./MicroXRCEAgent udp4 -p 8888
 ```
 
 Open another terminal and launch Aerostack 2 (to detach from tmux you can do CTRL-B + D, or to move in the different windows CTRL-B + 0,1,2..):
 
-```bash
+```
+source /opt/ros/humble/setup.bash
+source ~/workspace/as2_platform_pixhawk_ws/install/setup.bash
+cd ~/workspace/project_pegasus_isaac_sim
 ./launch_as2.bash -n drone1
 ```
 
