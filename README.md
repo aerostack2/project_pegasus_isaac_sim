@@ -1,4 +1,4 @@
-# Project Pegasus Simulator in Isaac Sim [WIP]
+# Project Pegasus Simulator in Isaac Sim
 
 This project aims at installing and running a photorealistic simulation of a drone using [Pegasus Simulator](https://github.com/PegasusSimulator/PegasusSimulator), [Nvidia Isaac Sim](https://developer.nvidia.com/isaac/sim) and [Aerostack 2](https://github.com/aerostack2/aerostack2). Here a short video of the resulting simulation:
 
@@ -93,78 +93,40 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
 
+## Config [WIP]
+
 
 ## Execution
 
-### 0. Pre-requisites
-For this drones, aerostack2 nodes must be launched in the onboard computer of each drone, and the ground station can be launched in both the onboard computer of the drone or in an external computer.
+## Launch Simulation wiith Teleoperation
 
-For **simulation**, we use a docker image for launch Gazebo Garden with the Pixhawk SITL. You need to build it with the following command:
-
-```bash
-cd sitl_config/docker && ./docker_build.bash
+Open a terminal and launch Isaac Sim simulation:
+```
+source /opt/ros/humble/setup.bash
+ISAACSIM_PYTHON drone_camera_lidar_isaac_sim.py --px4_dir <root_to_px4>/PX4-Autopilot
 ```
 
-Then, configure the simulation in the *sitl_config/world.yaml* file. You can change the world, the number of drones, the initial position, etc.
-
-Finally, you need to launch the simulation with the following command:
-
-```bash
-./launch_sitl.bash
+Open another terminal and launch Micro XRCE-DDS Client:
+```
+cd ~/workspace/Micro-XRCE-DDS-Agent/build
+./MicroXRCEAgent udp4 -p 8888
 ```
 
-At the execution ends, close tmux sessions with the following command:
+Open another terminal and launch Aerostack 2 (to detach from tmux you can do CTRL-B + D, or to move in the different windows CTRL-B + 0,1,2..):
+
+```bash
+./launch_as2.bash -n drone1
+```
+
+Now, you can teleoperate manually the drone in Isaac Sim, follow the instructions in the graphical interface that appeared. There are many topics being published, including RGB camera and LIDAR.
+
+To finalize the execution, close Isaac Sim, exit Micro XRCE-DDS Client and close tmux sessions with the following command:
 
 ```bash
 ./stop_tmuxinator_sitl.bash
 ```
 
-### 1. Launch aerostack2 nodes for each drone
-
-Launch **Micro XRCE Agent** for each drone:
-
-- For real:
-```bash
-MicroXRCEAgent serial -b 921600 --dev /dev/ttyUSB0
-```
-- For simulation:
-```bash
-MicroXRCEAgent udp4 -p 8888
-```
-
-To launch aerostack2 nodes for each drone, execute once the following command:
-
-```bash
-./launch_as2.bash -n drone0
-```
-
-Re-launch the command for each drone you want to launch, changing the drone namespace with the flag `-n`.
-
-The flags for the components launcher are:
-
-- **-n**: select drone namespace to launch. Default is 'drone0'
-- **-c**: motion controller plugin (pid_speed_controller, differential_flatness_controller), choices: [pid, df]. Default: pid
-- **-x**: launch micro_xrce_agent for real flights. Default not launch
-- **-r**: record rosbag. Default not launch
-- **-g**: launch using gnome-terminal instead of tmux. Default not set
-
-### 2. Launch aerostack2 nodes for the ground station
-To launch aerostack2 nodes for the ground station, execute once the following command:
-
-```bash
-./launch_ground_station.bash -n drone0
-```
-
-The flags for the components launcher are:
-
-- **-n**: drone namespaces, comma separated. Default is 'drone0'
-- **-t**: launch keyboard teleoperation. Default not launch
-- **-v**: open rviz. Default not launch
-- **-m**: launch mocap4ros2. Default not launch
-- **-r**: record rosbag. Default not launch
-- **-g**: launch using gnome-terminal instead of tmux. Default not set
-
-### 3. Launch a mission
+### Launch a mission [WIP]
 There are several missions that can be executed:
 
 - **AS2 keyboard teleoperation control**: You can use the keyboard teleoperation launched with the ground station, using the flag `-t`:
@@ -186,23 +148,6 @@ There are several missions that can be executed:
 - **AS2 Behavior Trees single drone mission**: You can execute a mission that used AS2 Behavior Trees, launching the mission with:
   ```bash
   python3 mission_behavior_tree.py -n drone0
-  ```
-
-### 4. End the execution
-
-If you are using tmux, you can end the execution with the following command:
-
-- **End the execution of all nodes**:
-  ```bash
-  ./stop_tmuxinator_as2.bash drone0
-  ```
-- **End the execution of all nodes of the ground station**:
-  ```bash
-  ./stop_tmuxinator_ground_station.bash
-  ```
-- **End the execution of both**:
-  ```bash
-  ./stop_tmuxinator.bash drone0
   ```
 
 You can force the end of all tmux sessions with the command:
