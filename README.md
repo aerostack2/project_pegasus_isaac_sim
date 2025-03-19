@@ -94,7 +94,7 @@ colcon build
 ```
 
 ## Config [WIP]
-Currently, the environment can be change in `drone_camera_lidar_isaac_sim.py`, in the line:
+Currently, the environment can be changed in `drone_camera_lidar_isaac_sim.py`, in the line:
 ```
 # Launch one of the worlds provided by NVIDIA
 self.pg.load_environment(SIMULATION_ENVIRONMENTS["Warehouse with Shelves"])
