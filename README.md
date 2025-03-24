@@ -17,6 +17,16 @@ cd ~/workspace
 git clone https://github.com/aerostack2/project_pegasus_isaac_sim
 ```
 
+### Install dependencies and remove conda activation from .bashrc
+```
+sudo apt-get install tmux tmuxinator
+```
+
+If conda is installed already in your system, remove everything related to conda from .bashrc and run this command:
+```
+conda config --set auto_activate_base false
+```
+
 ### Install Pegasus Simulator and Isaac Sim 4.2.0
 
 Follow this instructions to install Isaac Sim 4.2.0 (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html)
