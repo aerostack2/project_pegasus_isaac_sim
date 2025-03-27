@@ -210,3 +210,8 @@ Also, you can see them in the default config file of the package, in the *config
 ## Troubleshooting
 ### Conda installation and compilation issues
 Remove from `.bashrc` the conda init for the base environment. Source again `.bashrc` and run `sudo ldconfig`.
+
+### PX4 process still running after closing simulation
+```
+killall px4
+```
