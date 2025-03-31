@@ -279,66 +279,68 @@ class PegasusApp:
         """
         from pxr import UsdGeom, Gf
         import math
-
         # Get the stage
         stage = self.world.stage
-
         # Get the quadrotor and camera prims
         quad_prim = stage.GetPrimAtPath(self.quad_path)
         camera_prim = stage.GetPrimAtPath(self.camera_path)
-
         if not quad_prim or not camera_prim:
             return
-
         # Get quadrotor position and orientation
         quad_xform = UsdGeom.Xformable(quad_prim)
         quad_world_transform = quad_xform.ComputeLocalToWorldTransform(0)
         quad_position = quad_world_transform.ExtractTranslation()
-
         # Extract quadrotor rotation as quaternion from transform matrix
         quad_rotation = quad_world_transform.ExtractRotationQuat()
-
         # Extract yaw directly from quaternion components
         # Yaw = atan2(2.0 * (qw * qz + qx * qy), 1.0 - 2.0 * (qy * qy + qz * qz))
         qw = quad_rotation.GetReal()
         qx, qy, qz = quad_rotation.GetImaginary()
-
         siny_cosp = 2.0 * (qw * qz + qx * qy)
         cosy_cosp = 1.0 - 2.0 * (qy * qy + qz * qz)
         quad_yaw = math.atan2(siny_cosp, cosy_cosp) * 180.0 / math.pi
-
         # Calculate the offset vector based on quadrotor's yaw
         offset_distance = 5.0  # Distance behind the quadrotor
         offset_height = 2.0  # Height above the quadrotor
-
         # Calculate offset in the quadrotor's coordinate system (rotated by yaw)
         offset_x = -offset_distance * math.cos(math.radians(quad_yaw))
         offset_y = -offset_distance * math.sin(math.radians(quad_yaw))
-
         # Calculate camera position (behind the quadrotor in its coordinate system)
         camera_position = Gf.Vec3d(
             quad_position[0] + offset_x,
             quad_position[1] + offset_y,
             quad_position[2] + offset_height,  # Up is always in Z regardless of rotation
         )
-
         # Update camera position
         camera_xform = UsdGeom.Xformable(camera_prim)
-
         # Get existing transform ops or create new ones
         ops = camera_xform.GetOrderedXformOps()
-
         # Update or create translate op
         translate_op = None
+        rotate_op = None
+        
+        # Find existing ops
         for op in ops:
             if op.GetOpType() == UsdGeom.XformOp.TypeTranslate:
                 translate_op = op
-                break
-
+            elif op.GetOpType() == UsdGeom.XformOp.TypeRotateXYZ:
+                rotate_op = op
+        
+        # Update or create translate op
         if translate_op:
             translate_op.Set(camera_position)
         else:
             camera_xform.AddTranslateOp().Set(camera_position)
+        
+        # Update or create rotation op - combine fixed rotation with quadrotor's yaw
+        if rotate_op:
+            # Get current fixed rotation and update the Z component with quadrotor's yaw
+            fixed_rotation = rotate_op.Get()
+            # Add quad_yaw to the Z component (-90 + quad_yaw)
+            rotate_op.Set(Gf.Vec3d(70.0, 0.0, -90.0 + quad_yaw))
+        else:
+            # Create new rotation with fixed rotation plus quadrotor's yaw
+            camera_xform.AddRotateXYZOp().Set(Gf.Vec3d(70.0, 0.0, -90.0 + quad_yaw))
             
 
     def run(self):
