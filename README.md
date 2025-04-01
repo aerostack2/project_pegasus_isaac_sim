@@ -41,7 +41,18 @@ ISAACSIM_PYTHON ${ISAACSIM_PATH}/standalone_examples/api/omni.isaac.core/add_cub
 ```
 Install Pegasus Simulator (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html#installing-the-pegasus-simulator)
 
-Install PX4 (release 1.14.3) as explained in the Pegasus Docs (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html#installing-px4-autopilot)
+### Build PX4
+Important note about PX4: set parameter `COM_OF_LOSS_T` to a high value (e.g. 15 seconds). Sometimes simulation can be slow down (not noticeable) but this small de-sync can trigger a failsafe of PX4. One way of doing it is modifying `<root_to_px4>/PX4-Autopilot/build/px4_sitl_default/rootfs/etc/init.d-posix/px4-rc.params` and include:
+
+```
+#!/bin/sh
+# shellcheck disable=SC2154
+
+param set-default COM_OF_LOSS_T 15
+```
+
+After, build and install PX4 (release 1.14.3) as explained in the Pegasus Docs (https://pegasussimulator.github.io/PegasusSimulator/source/setup/installation.html#installing-px4-autopilot)
+
 
 ### Install ROS 2 (Humble)
 
