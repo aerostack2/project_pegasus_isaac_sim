@@ -227,8 +227,8 @@ class PegasusApp:
                 quad_yaw = math.atan2(siny_cosp, cosy_cosp) * 180.0 / math.pi
 
                 # Calculate offset in the quadrotor's coordinate system
-                offset_distance = 5.0
-                offset_height = 2.0
+                offset_distance = 2.0
+                offset_height = 0.5
 
                 # Calculate offset based on quadrotor's yaw
                 offset_x = -offset_distance * math.cos(math.radians(quad_yaw))
@@ -244,7 +244,7 @@ class PegasusApp:
                 camera_xform.AddTranslateOp().Set(camera_position)
 
                 # # Add initial rotation
-                camera_xform.AddRotateXYZOp().Set(Gf.Vec3d(70.0, 0.0, -90.0))
+                camera_xform.AddRotateXYZOp().Set(Gf.Vec3d(85.0, 0.0, -90.0))
 
 
             except Exception as e:
@@ -300,8 +300,8 @@ class PegasusApp:
         cosy_cosp = 1.0 - 2.0 * (qy * qy + qz * qz)
         quad_yaw = math.atan2(siny_cosp, cosy_cosp) * 180.0 / math.pi
         # Calculate the offset vector based on quadrotor's yaw
-        offset_distance = 5.0  # Distance behind the quadrotor
-        offset_height = 2.0  # Height above the quadrotor
+        offset_distance = 2.0  # Distance behind the quadrotor
+        offset_height = 0.5  # Height above the quadrotor
         # Calculate offset in the quadrotor's coordinate system (rotated by yaw)
         offset_x = -offset_distance * math.cos(math.radians(quad_yaw))
         offset_y = -offset_distance * math.sin(math.radians(quad_yaw))
@@ -337,10 +337,10 @@ class PegasusApp:
             # Get current fixed rotation and update the Z component with quadrotor's yaw
             fixed_rotation = rotate_op.Get()
             # Add quad_yaw to the Z component (-90 + quad_yaw)
-            rotate_op.Set(Gf.Vec3d(70.0, 0.0, -90.0 + quad_yaw))
+            rotate_op.Set(Gf.Vec3d(85.0, 0.0, -90.0 + quad_yaw))
         else:
             # Create new rotation with fixed rotation plus quadrotor's yaw
-            camera_xform.AddRotateXYZOp().Set(Gf.Vec3d(70.0, 0.0, -90.0 + quad_yaw))
+            camera_xform.AddRotateXYZOp().Set(Gf.Vec3d(85.0, 0.0, -90.0 + quad_yaw))
             
 
     def run(self):
