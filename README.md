@@ -157,7 +157,7 @@ Now, you can teleoperate manually the drone in Isaac Sim, follow the instruction
 To finalize the execution, close Isaac Sim, exit Micro XRCE-DDS Client and close tmux sessions with the following command:
 
 ```bash
-./stop_tmuxinator_sitl.bash
+./stop_tmuxinator_as2.bash
 ```
 
 ### Launch a mission [WIP]
