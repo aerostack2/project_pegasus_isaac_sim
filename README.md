@@ -6,6 +6,8 @@ https://github.com/user-attachments/assets/a465b64a-a23c-4e7f-9d47-6908acafc153
 
 https://github.com/user-attachments/assets/dde015c6-1d9d-4e26-9ad8-0b7a1ecae015
 
+Credits to https://github.com/gdaudt, as the creator of the indoor ship environment shown in this video.
+
 ## Installation
 
 This project has been tested in Ubuntu 22.04, Isaac Sim 4.2.0 and ROS 2 (Humble). It is recommended to have an Nvidia GPU with CUDA enabled capabilities and enough VRAM (tested on Nvidia RTX4090).
