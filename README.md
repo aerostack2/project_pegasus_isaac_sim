@@ -98,8 +98,8 @@ sudo make install
 sudo ldconfig /usr/local/lib/
 ```
 
-### Install Aerostack 2
-Instal Aerostack 2 base:
+### Install Aerostack2
+Instal Aerostack2 base:
 ```
 sudo apt install ros-humble-aerostack2
 ```
